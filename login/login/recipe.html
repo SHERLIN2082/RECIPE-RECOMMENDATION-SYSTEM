@@ -1,0 +1,195 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            text-align: center;
+        }
+        .recipe-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .recipe-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 15px;
+            width: 200px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .recipe-card img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .recipe-detail {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Recipe Recommendation</h1>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="form1Example13">
+          <i class="bi bi-person-circle"></i> Username
+        </label>
+        <label class="form-label" for="form3Example1c"><i class="bi bi-person-circle"></i> Your Name</label>
+        <input type="text" id="form3Example1c" class="form-control form-control-lg py-3" name="name" autocomplete="off" placeholder="enter your name" style="border-radius:25px ;" />
+
+      </div>
+    <input type="text" id="query" placeholder="Enter ingredient (e.g., chicken)">
+    <button onclick="getRecipes()">Search Recipes</button>
+
+    <div class="recipe-container" id="recipeContainer"></div>
+    
+    <div class="recipe-detail" id="recipeDetail">
+        <h2 id="recipeTitle"></h2>
+        <img id="recipeImage" alt="Recipe Image">
+        <p id="recipeInstructions"></p>
+        <button onclick="closeDetail()">Close</button>
+    </div>
+
+    <script>
+        async function getRecipes() {
+            const query = document.getElementById('query').value;
+            const apiKey = 'df3191bcd979458f835fc0dbe77e09dc'; // Replace with your Spoonacular API Key
+
+            const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${query}&apiKey=${apiKey}`);
+            const data = await response.json();
+            displayRecipes(data);
+        }
+
+        function displayRecipes(recipes) {
+            const recipeContainer = document.getElementById('recipeContainer');
+            recipeContainer.innerHTML = ''; // Clear previous results
+
+            recipes.forEach(recipe => {
+                const card = document.createElement('div');
+                card.className = 'recipe-card';
+                card.innerHTML = `
+                    <h3>${recipe.title}</h3>
+                    <img src="${recipe.image}" alt="${recipe.title}">
+                    <button onclick="showDetail(${recipe.id})">View Recipe</button>
+                `;
+                recipeContainer.appendChild(card);
+            });
+        }
+
+        async function showDetail(id) {
+            const apiKey = 'df3191bcd979458f835fc0dbe77e09dc'; // Replace with your Spoonacular API Key
+
+            const response = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`);
+            const recipe = await response.json();
+
+            document.getElementById('recipeTitle').innerText = recipe.title;
+            document.getElementById('recipeImage').src = recipe.image;
+            document.getElementById('recipeInstructions').innerText = recipe.instructions || "No instructions available.";
+            document.getElementById('recipeDetail').style.display = 'block';
+        }
+
+        function closeDetail() {
+            document.getElementById('recipeDetail').style.display = 'none';
+        }
+    </script>
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Meal For Your Ingredients</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
+        crossorigin="anonymous" />
+  <link rel="stylesheet" href="recipe.css">
+</head>
+<body>
+  <div class="container">
+    <div class="meal-wrapper">
+      <div class="meal-search">
+        <h2 class="title">Find Meals For Your Ingredients</h2>
+        <div class="meal-search-box">
+          <input type="text" class="search-control" placeholder="Enter an ingredient" id="search-input">
+          <button type="submit" class="search-btn btn" id="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="meal-result">
+        <h2 class="title">Your Search Results:</h2>
+        <div id="meal"></div>
+      </div>
+
+      <div class="meal-details" id="meal-details">
+        <button type="button" class="btn recipe-close-btn" id="recipe-close-btn">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="meal-details-content" id="meal-details-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="recipe.js"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Finder</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="recipe.css">
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('bg1.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    background-attachment: fixed;
+}  
+</style></head>
+
+<body>
+<div class="about" id="Recipe">
+  <h1>Get recipe<br> &emsp; for your<span>Ingredients</span></h1>
+
+    <!-- <div class="about_main">
+        <div class="about_text">
+            <h1>Get recipe<br> &emsp; for your <span>Ingredients</span></h1>
+        </div>
+    </div> -->
+
+    <div class = "meal-search-box">
+        <input type = "text" class = "search-control" placeholder="Enter an ingredient" id = "search-input">
+        <button type = "submit" class = "search-btn btn" id = "search-btn">
+          <i class = "fas fa-search"></i>
+        </button>
+      </div>
+
+    <div class="recipe-grid" id="meal-result"></div>
+    <!-- <div id="recipe-grid"></div> -->
+  </div>
+
+  <script src="recipe1.js"></script>
+</body>
+</html>

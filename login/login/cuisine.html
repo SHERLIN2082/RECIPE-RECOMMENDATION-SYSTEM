@@ -1,0 +1,237 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuisine Recipe Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: 36px;
+      color: #333;
+    }
+
+    #cuisine-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cuisine-card {
+      width: 300px;
+      height: 200px;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .cuisine-card:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Explore Cuisines</h1>
+  <div id="cuisine-gallery"></div>
+
+  <script>
+    const availableCuisines = [
+      "American", "Asian", "Chinese", "French", "Indian", 
+      "Italian", "Japanese", "Mexican", "Middle Eastern", 
+      "Thai", "Vietnamese"
+    ];
+    const cuisineGallery = document.getElementById('cuisine-gallery');
+
+    // Display cuisines as clickable cards
+    function displayCuisines() {
+      availableCuisines.forEach((cuisine) => {
+        const card = document.createElement('div');
+        card.className = 'cuisine-card';
+        card.textContent = cuisine;
+
+        // Redirect to recipes.html with the selected cuisine in the URL
+        card.addEventListener('click', () => {
+          window.location.href = `cusineDish.html?cuisine=${encodeURIComponent(cuisine)}`;
+        });
+
+        cuisineGallery.appendChild(card);
+      });
+    }
+
+    // Initialize the page by displaying cuisines
+    displayCuisines();
+  </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style copy.css">
+    <script>
+      function redirectToRecipes(cuisine) {
+        window.location.href = `cusineDish.html?cuisine=${encodeURIComponent(cuisine)}`;
+      }
+    </script>
+    <style>
+      body {
+  margin: 0;
+  padding: 0;
+  background-image: url('image/Cuisine.png');
+  background-size: cover; /* Keep the background covering the whole screen */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+  background-attachment: fixed; /* Keep the background image fixed */
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+    </style>
+</head>
+<body>
+    <div class="gallary" id="Gallary">
+        <h1>Our<span>Cuisine</span></h1>
+
+        <div class="gallary_image_box">
+            <div class="gallary_image">
+                <img src="image/american1.png">
+
+                <h3>American</h3>
+                <p>
+                  A melting pot of flavors, where comfort meets creativity. 
+                </p>
+                <a href="#" class="gallary_btn" onclick="redirectToRecipes('American')">Explore</a>
+            </div>
+
+            <div class="gallary_image">
+                <img src="image/asian1.jpg">
+
+                <h3>Asian</h3>
+                <p>
+                  A symphony of spices, traditions, and textures from the East.
+                </p>
+                <a href="#" class="gallary_btn" onclick="redirectToRecipes('Asian')">Explore</a>
+            </div>
+
+            <div class="gallary_image">
+                <img src="image/chinese.jpg">
+
+                <h3>Chinese</h3>
+                <p>
+                  Harmony in every bite, where ancient flavors meet modern delights.
+                </p>
+                <a href="#" class="gallary_btn" onclick="redirectToRecipes('Chinese')">Explore</a>
+            </div>
+
+            <div class="gallary_image">
+                <img src="image/french.jpg">
+
+                <h3>French</h3>
+                <p>
+                  Elegance on a plate, perfected through centuries of culinary artistry.
+                </p>
+                <a href="#" class="gallary_btn" onclick="redirectToRecipes('French')">Explore</a>
+            </div>
+
+            <div class="gallary_image">
+                <img src="image/inidan.jpeg">
+
+                <h3>Indian</h3>
+                <p>
+                  An explosion of spices and aromas that tell stories of heritage.
+                </p>
+                <a href="#" class="gallary_btn" onclick="redirectToRecipes('Indian')">Explore</a>
+            </div>
+
+            <div class="gallary_image">
+                <img src="image/italian.jpg">
+
+                <h3>Italian</h3>
+                <p>
+                  Simple ingredients, bold flavors, and a passion for every meal.
+                </p>
+                <a href="#" class="gallary_btn" onclick="redirectToRecipes('Italian')">Explore</a>
+            </div>
+
+            <div class="gallary_image">
+              <img src="image/japanese.jpg">
+
+              <h3>Japanese</h3>
+              <p>
+                Precision and purity, where every dish is a masterpiece.
+              </p>
+              <a href="#" class="gallary_btn" onclick="redirectToRecipes('Japanese')">Explore</a>
+          </div>
+
+          <div class="gallary_image">
+            <img src="image/mexican.png">
+
+            <h3>Mexican</h3>
+            <p>
+              Vibrant, festive, and bursting with zest in every bite.
+            </p>
+            <a href="#" class="gallary_btn" onclick="redirectToRecipes('Mexican')">Explore</a>
+        </div>
+
+        <div class="gallary_image">
+          <img src="image/mid.png">
+
+          <h3>Middle Eastern</h3>
+          <p>
+            A feast of rich traditions, spices, and shared hospitality.
+          </p>
+          <a href="#" class="gallary_btn" onclick="redirectToRecipes('Middle Eastern')">Explore</a>
+      </div>
+
+      <div class="gallary_image">
+        <img src="image/thai.png">
+
+        <h3>Thailand</h3>
+        <p>
+          Bold, bright, and beautifully balanced between sweet, sour, and spicy.
+        </p>
+        <a href="#" class="gallary_btn" onclick="redirectToRecipes('Thailand')">Explore</a>
+    </div>
+
+    <div class="gallary_image">
+      <img src="image/viet.png">
+
+      <h3>Vietnamese</h3>
+      <p>
+        Fresh, fragrant, and flavorful, with a touch of harmony in every dish.
+      </p>
+      <a href="#" class="gallary_btn" onclick="redirectToRecipes('Vietnamese')">Explore</a>
+  </div>
+        </div>
+
+    </div>
+</body>
+</html>
+
+

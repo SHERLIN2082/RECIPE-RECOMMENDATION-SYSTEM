@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Recipe Recommender</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+
+        body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5; /* Fallback color */
+        background-image: url('image/Diet\ Page.png'); /* Replace with your image path */
+        background-size: cover; /* Cover the entire body */
+        background-attachment: fixed; /* Fix the background image */
+        background-position: center; /* Center the background image */
+        line-height: 1.6;
+    }
+
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .filters {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #34495e;
+            font-size: 1.2em;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            font-size: 1.1em;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #fac031;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            width: 10%;
+            position: relative;
+            justify-content: left;
+        }
+
+        button:hover {
+            background-color: #cfc237;
+        }
+
+        #recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .recipe-info {
+            padding: 20px;
+        }
+
+        .recipe-title {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            text-decoration: none;
+        }
+
+        .recipe-details {
+            display: flex;
+            justify-content: space-between;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            text-decoration: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .diet-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .diet-tag {
+            background-color: #f4f5e8;
+            color: #090909;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+        h1{
+            font-size: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        h1 span{
+            color: #fac031;
+            margin-left: 15px;
+            font-family: mv boli;
+            text-decoration: None;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span>Diet&nbsp;</span>recipe</h1>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="diet">Diet Type:</label>
+                <select id="diet">
+                    <option value="">Any</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="paleo">Paleo</option>
+                    <option value="ketogenic">Ketogenic</option>
+                    <option value="gluten-free">Gluten Free</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Intolerances:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" value="dairy"> Dairy</label>
+                    <label><input type="checkbox" value="egg"> Egg</label>
+                    <label><input type="checkbox" value="gluten"> Gluten</label>
+                    <label><input type="checkbox" value="peanut"> Peanut</label>
+                    <label><input type="checkbox" value="seafood"> Seafood</label>
+                    <label><input type="checkbox" value="shellfish"> Shellfish</label>
+                    <label><input type="checkbox" value="soy"> Soy</label>
+                    <label><input type="checkbox" value="tree-nut"> Tree Nut</label>
+                    <label><input type="checkbox" value="wheat"> Wheat</label>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label for="maxCalories">Maximum Calories per Serving:</label>
+                <input type="number" id="maxCalories" placeholder="e.g., 500" min="0">
+            </div>
+
+            <button onclick="searchRecipes()">Search</button>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            Searching for recipes...
+        </div>
+
+        <div id="recipe-grid"></div>
+    </div>
+
+    <script>
+        // Replace with your Spoonacular API key
+        const API_KEY = 'df3191bcd979458f835fc0dbe77e09dc';
+
+        async function searchRecipes() {
+            const diet = document.getElementById('diet').value;
+            const maxCalories = document.getElementById('maxCalories').value;
+            const intolerances = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(cb => cb.value)
+                .join(',');
+
+            const loading = document.getElementById('loading');
+            const recipeGrid = document.getElementById('recipe-grid');
+
+            loading.style.display = 'block';
+            recipeGrid.innerHTML = '';
+
+            try {
+                const response = await fetch(
+                    `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&diet=${diet}&intolerances=${intolerances}&maxCalories=${maxCalories}&number=12&addRecipeNutrition=true`,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch recipes');
+                }
+
+                const data = await response.json();
+                displayRecipes(data.results);
+            } catch (error) {
+                recipeGrid.innerHTML = `
+                    <div class="error">
+                        Sorry, there was an error fetching recipes. Please try again later.
+                        <br>Error: ${error.message}
+                    </div>
+                `;
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function displayRecipes(recipes) {
+            const recipeGrid = document.getElementById('recipe-grid');
+            
+            if (!recipes.length) {
+                recipeGrid.innerHTML = `
+                    <div class="error">
+                        No recipes found matching your criteria. Try adjusting your filters.
+                    </div>
+                `;
+                return;
+            }
+
+            recipes.forEach(recipe => {
+                const card = `
+                    <a href="recipedetail.html?id=${recipe.id}" class="recipe-card">
+                        <img src="${recipe.image}" alt="${recipe.title}" class="recipe-image">
+                        <div class="recipe-info">
+                            <h3 class="recipe-title">${recipe.title}</h3>
+                            <div class="recipe-details">
+                                <span><i class="fas fa-clock"></i> ${recipe.readyInMinutes} mins</span>
+                                <span><i class="fas fa-fire"></i> ${Math.round(recipe.nutrition.nutrients[0].amount)} cal</span>
+                            </div>
+                            <div class="diet-tags">
+                                ${recipe.diets.map(diet => `
+                                    <span class="diet-tag">${diet}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                recipeGrid.innerHTML += card;
+            });
+        }
+    </script>
+</body>
+</html>
